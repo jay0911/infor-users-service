@@ -13,6 +13,7 @@ import com.infor.models.InforUser;
 public class UsersMaintenanceIDao extends HibernateDaoSupport implements UsersMaintananceDao{
 
 	private static final String USER_FETCH_HQL = "from InforUser where username=:username";
+	private static final String USERS_FETCH_HQL = "from InforUser";
 	private static final String USER_MODIFY_HQL = "update InforUser set firstname=:firstname, lastname=:lastname,contactnumber=:contactnumber, emailaddress=:emailaddress, inforaddress=:inforaddress,position=:position,gender=:gender,username=:username,password=:password where username=:username";
 	
 	@SuppressWarnings("unchecked")
@@ -74,6 +75,14 @@ public class UsersMaintenanceIDao extends HibernateDaoSupport implements UsersMa
 			return true;
 		}
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<InforUser> getUsers() {
+		// TODO Auto-generated method stub
+		return customSelectQuery(USERS_FETCH_HQL)
+				.list();
 	}
 
 }

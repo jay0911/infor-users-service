@@ -5,6 +5,7 @@ import com.infor.models.InforUser;
 
 public interface UsersMaintananceDao {
 	public List<InforUser> getUser(InforUser user);
+	public List<InforUser> getUsers();
 	public void saveUser(InforUser user);
 	public void updateUser(InforUser user);
 	public void removeUser(InforUser user);

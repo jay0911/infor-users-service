@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.infor.dao.UsersMaintananceDao;
-import com.infor.dto.UserMaintenanceDTO;
+import com.infor.dto.MaintenanceDTO;
 import com.infor.models.InforUser;
 import com.infor.service.UsersMaintenanceService;
 /**
@@ -22,10 +22,10 @@ public class UsersMaintenanceIService implements UsersMaintenanceService{
 	private UsersMaintananceDao md;
 
 	@Override
-	public UserMaintenanceDTO getUser(InforUser user) {
+	public MaintenanceDTO getUser(InforUser user) {
 		// TODO Auto-generated method stub
 		List<InforUser> users = md.getUser(user);
-		UserMaintenanceDTO dto = new UserMaintenanceDTO();
+		MaintenanceDTO dto = new MaintenanceDTO();
 		dto.setInforUser(users.get(0));
 		return dto; 
 	}
@@ -49,14 +49,14 @@ public class UsersMaintenanceIService implements UsersMaintenanceService{
 	}
 
 	@Override
-	public void saveRegistration(UserMaintenanceDTO dto) {
+	public void saveRegistration(MaintenanceDTO dto) {
 		// TODO Auto-generated method stub
 		InforUser user = new InforUser();
 		setUserFromDTO(dto,user);
 		md.saveRegistration(user);
 	}
 	
-	private void setUserFromDTO (UserMaintenanceDTO dto,InforUser user){
+	private void setUserFromDTO (MaintenanceDTO dto,InforUser user){
 		user.setFirstname(dto.getFirstname());
 		user.setLastname(dto.getLastname());
 		user.setEmailaddress(dto.getEmailaddress());
@@ -69,14 +69,14 @@ public class UsersMaintenanceIService implements UsersMaintenanceService{
 	}
 
 	@Override
-	public boolean isUsernameExisting(UserMaintenanceDTO dto) {
+	public boolean isUsernameExisting(MaintenanceDTO dto) {
 		InforUser u = new InforUser();
 		this.setUserFromDTO(dto,u);
 		return md.isUsernameExisting(u);
 	}
 
 	@Override
-	public UserMaintenanceDTO getuserloggedinInfo(UserMaintenanceDTO dto) {
+	public MaintenanceDTO getuserloggedinInfo(MaintenanceDTO dto) {
 		// TODO Auto-generated method stub
 		InforUser user = new InforUser();
 		user.setUsername(dto.getUsername());
@@ -84,11 +84,20 @@ public class UsersMaintenanceIService implements UsersMaintenanceService{
 	}
 
 	@Override
-	public void modifyuser(UserMaintenanceDTO dto) {
+	public void modifyuser(MaintenanceDTO dto) {
 		// TODO Auto-generated method stub
 		InforUser u = new InforUser();
 		this.setUserFromDTO(dto,u);
 		this.updateUser(u);
+	}
+
+	@Override
+	public MaintenanceDTO getUsers() {
+		// TODO Auto-generated method stub
+		List<InforUser> users = md.getUsers();
+		MaintenanceDTO dto = new MaintenanceDTO();
+		dto.setInforUsers(users);
+		return dto;
 	}
 
 }
