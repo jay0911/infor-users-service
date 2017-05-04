@@ -15,6 +15,7 @@ public class UsersMaintenanceIDao extends HibernateDaoSupport implements UsersMa
 	private static final String USER_FETCH_HQL = "from InforUser where username=:username";
 	private static final String USERS_FETCH_HQL = "from InforUser";
 	private static final String USER_MODIFY_HQL = "update InforUser set firstname=:firstname, lastname=:lastname,contactnumber=:contactnumber, emailaddress=:emailaddress, inforaddress=:inforaddress,position=:position,gender=:gender,username=:username,password=:password where username=:username";
+	private static final String USER_PARKING_FETCH_HQL = "from InforUser as user where user.userid not in (select inforparking.userid from InforParking as inforparking)";
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -82,6 +83,14 @@ public class UsersMaintenanceIDao extends HibernateDaoSupport implements UsersMa
 	public List<InforUser> getUsers() {
 		// TODO Auto-generated method stub
 		return customSelectQuery(USERS_FETCH_HQL)
+				.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<InforUser> getallavailuerforparking() {
+		// TODO Auto-generated method stub
+		return customSelectQuery(USER_PARKING_FETCH_HQL)
 				.list();
 	}
 

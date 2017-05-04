@@ -61,4 +61,9 @@ public class UsersMaintenanceEndpoint {
 		return s.getUsers();
 	}
 	
+	@PostMapping("/getallavailuserforparking")
+	public MaintenanceDTO getallavailuerforparking(@RequestBody MaintenanceDTO dto){
+		return s.getallavailuerforparking();
+	}
+	
 }

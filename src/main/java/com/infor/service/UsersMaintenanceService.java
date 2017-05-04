@@ -14,5 +14,5 @@ public interface UsersMaintenanceService {
 	public boolean isUsernameExisting(MaintenanceDTO dto);
 	
 	public MaintenanceDTO getuserloggedinInfo(MaintenanceDTO dto);
-	
+	public MaintenanceDTO getallavailuerforparking();
 }	

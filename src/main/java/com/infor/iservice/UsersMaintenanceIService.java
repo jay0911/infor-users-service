@@ -100,4 +100,13 @@ public class UsersMaintenanceIService implements UsersMaintenanceService{
 		return dto;
 	}
 
+	@Override
+	public MaintenanceDTO getallavailuerforparking() {
+		// TODO Auto-generated method stub
+		List<InforUser> users = md.getallavailuerforparking();
+		MaintenanceDTO dto = new MaintenanceDTO();
+		dto.setInforUsers(users);
+		return dto;
+	}
+
 }
